@@ -43,6 +43,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
+
 using OpenDis.Dis1998;
 using OpenDis.Enumerations;
 
@@ -175,7 +176,7 @@ namespace OpenDis.Core
         /// <param name="ds">Datastream which contains the raw packet and Endian Type</param>
         /// <remarks>Added by PES to work with Mobile.</remarks>
         /// <returns>The PDU instance.</returns>
-        public static Pdu UnmarshalRawPdu(byte pduType, DataInputStream ds) => UnmarshalRawPdu((PduType)pduType, ds);
+        public virtual Pdu UnmarshalRawPdu(byte pduType, DataInputStream ds) => UnmarshalRawPdu((PduType)pduType, ds);
 
         /// <summary>
         /// Used to unmarshal data back into the correct PDU type.

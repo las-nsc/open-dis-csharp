@@ -297,6 +297,25 @@ namespace OpenDis.Core
             return returnedData;
         }
 
+        /// <summary>
+        /// Reads from DataStream's byte array a DateTime
+        /// </summary>
+        /// <returns>unsigned short value</returns>
+        public DateTime ReadDateTime()
+        {
+            const int size = sizeof(long);
+            byte[] temp = DataStream.ReturnByteArray(pduDataStream.StreamByteArray, pduDataStream.StreamCounter, size);
+
+            if (Endian == Endian.Big)
+            {
+                Array.Reverse(temp);
+            }
+
+            long returnedData = BitConverter.ToInt64(temp, 0);
+            pduDataStream.StreamCounter += size;
+            return DateTime.FromBinary(returnedData);
+        }
+
         #endregion Methods 
     }
 }
